@@ -1,0 +1,128 @@
+ChargeMisIDTool README
+Last Update: 9 November 2014
+
+Author and Contact: Alex Long (along528@bu.edu)
+
+
+This tool is intended to be used to reweight specific MC samples
+according to the probability that the event will fall into a region
+with 0 Same-Flavor Opposite-Sign Lepton pairs via a charge mis-id.
+
+Currently, the tool is only intended to be used for specific MC samples,
+specifically, the following WZ and ZZ Samples:
+mc12_8TeV.129477.PowhegPythia8_AU2CT10_WZ_Wm11Z11_mll0p250d0_2LeptonFilter5.merge.NTUP_SMWZ.e1300_s1469_s1470_r3542_r3549_p1328/	
+mc12_8TeV.129480.PowhegPythia8_AU2CT10_WZ_Wm13Z11_mll0p250d0_2LeptonFilter5.merge.NTUP_SMWZ.e1300_s1469_s1470_r3542_r3549_p1328/	
+mc12_8TeV.129486.PowhegPythia8_AU2CT10_WZ_W11Z11_mll0p250d0_2LeptonFilter5.merge.NTUP_SMWZ.e1300_s1469_s1470_r3542_r3549_p1328/	
+mc12_8TeV.129489.PowhegPythia8_AU2CT10_WZ_W13Z11_mll0p250d0_2LeptonFilter5.merge.NTUP_SMWZ.e1300_s1469_s1470_r3542_r3549_p1328/	
+mc12_8TeV.129483.PowhegPythia8_AU2CT10_WZ_Wm15Z11_mll0p250d0_2LeptonFilter5.merge.NTUP_SMWZ.e1300_s1469_s1470_r3542_r3549_p1328/	
+mc12_8TeV.129492.PowhegPythia8_AU2CT10_WZ_W15Z11_mll0p250d0_2LeptonFilter5.merge.NTUP_SMWZ.e1300_s1469_s1470_r3542_r3549_p1328/	
+mc12_8TeV.126937.PowhegPythia8_AU2CT10_ZZ_4e_mll4_2pt5.merge.NTUP_SMWZ.e1280_s1469_s1470_r3542_r3549_p1328/	
+mc12_8TeV.126938.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_2pt5.merge.NTUP_SMWZ.e1280_s1469_s1470_r3752_r3549_p1328/	
+mc12_8TeV.126940.PowhegPythia8_AU2CT10_ZZ_4mu_mll4_2pt5.merge.NTUP_SMWZ.e1280_s1469_s1470_r3752_r3549_p1328/	
+or
+mc12_8TeV.185795.PowhegPythia8_AU2CT10_WmZ_3e_mll0p25_TriLeptonFilter.merge.NTUP_SMWZ.e3069_s1773_s1776_r4485_r4540_p1328/
+mc12_8TeV.185798.PowhegPythia8_AU2CT10_WmZ_mu2e_mll0p25_TriLeptonFilter.merge.NTUP_SMWZ.e3069_s1773_s1776_r4485_r4540_p1328/
+mc12_8TeV.185801.PowhegPythia8_AU2CT10_WmZ_tau2e_mll0p25_TriLeptonFilter.merge.NTUP_SMWZ.e3069_s1773_s1776_r4485_r4540_p1328/
+mc12_8TeV.185804.PowhegPythia8_AU2CT10_WpZ_3e_mll0p25_TriLeptonFilter.merge.NTUP_SMWZ.e3069_s1773_s1776_r4485_r4540_p1328/
+mc12_8TeV.185807.PowhegPythia8_AU2CT10_WpZ_mu2e_mll0p25_TriLeptonFilter.merge.NTUP_SMWZ.e3069_s1773_s1776_r4485_r4540_p1328/
+mc12_8TeV.185810.PowhegPythia8_AU2CT10_WpZ_tau2e_mll0p25_TriLeptonFilter.merge.NTUP_SMWZ.e3069_s1773_s1776_r4485_r4540_p1328/
+mc12_8TeV.185813.PowhegPythia8_AU2CT10_ZZ_4e_mll4_TriLeptonFilter.merge.NTUP_SMWZ.e3069_s1773_s1776_r4485_r4540_p1328/
+mc12_8TeV.185814.PowhegPythia8_AU2CT10_ZZ_2e2mu_mll4_TriLeptonFilter.merge.NTUP_SMWZ.e3069_s1773_s1776_r4485_r4540_p1328/
+mc12_8TeV.185815.PowhegPythia8_AU2CT10_ZZ_2e2tau_mll4_TriLeptonFilter.merge.NTUP_SMWZ.e3069_s1773_s1776_r4485_r4540_p1328/
+
+
+
+To see details on the method for applying weights and some examples of the output, please see slides 6-11 of the following presentation:
+https://indico.cern.ch/event/316200/contribution/0/material/slides/0.pdf
+
+
+
+
+CrossSectionTool is a simple tool for retrieving appropriate cross-sections 
+for a given in sample.
+
+It is also easily configurable by using a csv (comma seperated value) file
+which has the advantage that the configuration may be maintained using
+a spreadsheet program like Excel or LibreOffice.
+
+
+The configuration file included is for samples relevant for the 8 TeV SM WWW analysis
+and is located in the 'share' folder of this package: share/WWWSamples.csv
+The configuration accounts for the ami cross-section as well as any k-factors and filter efficiencies.
+
+
+---------
+Rate Inputs
+---------
+There are a few different sets of input rates included in the share directory
+
+Derived by Ruiqi Zhang
+1. WWWRates.root
+	Data dervied rates using likelihood mehthod.
+2. WWWRates_MC.root
+	MC dervied rates using likelihood mehthod.
+	
+
+
+
+OLD:
+3. ChargeMisIDRates.root
+	From reading plots on https://indico.cern.ch/event/309480/session/0/contribution/1/material/slides/0.pdf
+	for tight selection on left of slide 11.  The input root file is calculated from the MakeHistos.py
+	file also contained in the share directory.
+4. ChargeMisIDRates_Alternate.root
+	from ...
+
+
+---------
+Basic Usage 
+---------
+//include the tool
+#include "ChargeMisIDTool/ChargeMisIDTool.h"
+//inside initialization portion of code
+//here we configure for one set of rates
+m_hChargeMisIDTool = new WWW::ChargeMisIDTool("/path/to/ChargeMisIDTool/share/WWWRates.root");
+
+//we can test to see if it has initialized appropriately
+if(!m_hChargeMisIDTool->isInitialized()) throw std::string("ChargeMisIDTool not initialized");
+
+  if(m_sSystematics->chargeMisIDUp) m_hChargeMisIDTool->setSystematics(WWW::SysUp);
+  else if(m_sSystematics->chargeMisIDDown) m_hChargeMisIDTool->setSystematics(WWW::SysDown);
+
+//...Inside Event Loop
+
+//The tool assumes there are three reconstructed leptons in the event
+//It should only be called in the case where you want the sample to fall in the 0 SFOS region
+//It will only modify the samples listed above in this README
+//specify the uncorrecte TLorentzVector for each lepton
+vector<TLorentzVector> leptons;
+leptons.push_back(m_pTaggedLep1->rawMomentum());
+leptons.push_back(m_pTaggedLep2->rawMomentum());
+leptons.push_back(m_pTaggedLep3->rawMomentum());
+//specify the charge for each lepton
+vector<int> charges;
+charges.push_back(m_pTaggedLep1->charge());
+charges.push_back(m_pTaggedLep2->charge());
+charges.push_back(m_pTaggedLep3->charge());
+//specify whether the lepton is an electron or muon
+vector<bool> areElectrons;
+areElectrons.push_back(m_pTaggedLep1->type()==ELECTRON);
+areElectrons.push_back(m_pTaggedLep2->type()==ELECTRON);
+areElectrons.push_back(m_pTaggedLep3->type()==ELECTRON);
+
+//return the weight
+//after passing some event information, the lepton information specified above, and the MC block for some validation of the event
+chargeMisIDWeight = m_hChargeMisIDTool->getWeight(m_pEvent->eventinfo.mc_channel_number(),
+     				m_pEvent->eventinfo.EventNumber(),m_pEvent->mc, leptons,charges,areElectrons);
+//determine whether or not a charge flip has been specified
+doChargeFlip = m_hChargeMisIDTool->doChargeFlip();
+//if so, flip the charge of the appropriate lepton
+if(doChargeFlip){
+	chargeFlipIndex = m_hChargeMisIDTool->getChargeFlippedLeptonIndex(); 
+	if(chargeFlipIndex==0) m_pTaggedLep1->flipCharge();
+	else if(chargeFlipIndex==1) m_pTaggedLep2->flipCharge();
+	else if(chargeFlipIndex==2) m_pTaggedLep3->flipCharge();
+
+}
+
+
